@@ -32,8 +32,14 @@ function roundDecimal(float, places) {
         const roundedDecimalPart = decimalRoundingCache[places][decimalPart];
         return integerPart + roundedDecimalPart;
     }
-    
+
     const roundedDecimalPart = +(Math.round(decimalPart + 'e+' + places) + 'e-' + places);
+
+    if (isNaN(roundedDecimalPart)) {
+        console.error("Error: roundedDecimalPart is NaN for", decimalPart, "with places", places);
+        return float; // Return the original float instead of corrupting the number
+    }
+
     decimalRoundingCache[places][decimalPart] = roundedDecimalPart;
 
     return integerPart + roundedDecimalPart;
@@ -52,7 +58,7 @@ function optimizeCommands(commands) {
         const previousCommand = subpath[subpath.length - 1];
         const nextCommand = commands[i + 1];
         subpath.push(cmd);
-        
+
         if (cmd.type === 'M') {
             startX = cmd.x;
             startY = cmd.y;
@@ -713,7 +719,7 @@ Path.prototype.toDOMElement = function(options, pathData) {
             newPath.setAttribute('fill', this.fill);
         }
     }
-    
+
     if (this.stroke) {
         newPath.setAttribute('stroke', this.stroke);
         newPath.setAttribute('stroke-width', this.strokeWidth);
