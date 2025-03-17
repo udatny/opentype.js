@@ -48,7 +48,8 @@
     "ot": "./bin/ot"
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "sideEffects": false,
   "types": "types/opentype.d.ts"
