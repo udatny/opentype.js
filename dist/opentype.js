@@ -1,3 +1,4 @@
+"use strict";
 var opentype = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;

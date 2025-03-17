@@ -36,9 +36,13 @@
     "d:esm": "esbuild --bundle src/opentype.mjs --outdir=dist --target=es2018 --format=esm  --out-extension:.js=.min.mjs --define:DEBUG=false --minify --sourcemap"
   },
   "devDependencies": {
-    "mocha": "^10.7.3",
+    "@tsconfig/node-lts": "^22.0.1",
+    "@types/node": "^22.13.10",
     "esbuild": "^0.23.1",
-    "eslint": "^9.10.0"
+    "eslint": "^9.10.0",
+    "mocha": "^10.7.3",
+    "tsd-jsdoc": "^2.5.0",
+    "typescript": "^5.8.2"
   },
   "bin": {
     "ot": "./bin/ot"
@@ -46,5 +50,6 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false
+  "sideEffects": false,
+  "types": "types/opentype.d.ts"
 }
