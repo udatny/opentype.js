@@ -377,7 +377,6 @@ var opentype = (() => {
     }
     const roundedDecimalPart = +(Math.round(decimalPart + "e+" + places) + "e-" + places);
     if (isNaN(roundedDecimalPart)) {
-      console.error("Error: roundedDecimalPart is NaN for", decimalPart, "with places", places);
       return float;
     }
     decimalRoundingCache[places][decimalPart] = roundedDecimalPart;
