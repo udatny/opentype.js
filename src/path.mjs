@@ -33,12 +33,7 @@ function roundDecimal(float, places) {
         return integerPart + roundedDecimalPart;
     }
 
-    const roundedDecimalPart = +(Math.round(decimalPart + 'e+' + places) + 'e-' + places);
-
-    if (isNaN(roundedDecimalPart)) {
-        console.error("Error: roundedDecimalPart is NaN for", decimalPart, "with places", places);
-        return float; // Return the original float instead of corrupting the number
-    }
+    const roundedDecimalPart = Number((Math.round(decimalPart * Math.pow(10, places)) / Math.pow(10, places)).toFixed(places));
 
     decimalRoundingCache[places][decimalPart] = roundedDecimalPart;
 

@@ -156,10 +156,26 @@ describe('path.mjs', function() {
     });
 
     it('should not return NaNs in paths', function() {
-        const expectedResult = 'M0 349.00';
-        const path = new Path();
+        let expectedResult = 'M0 349';
+        let path = new Path();
         path.moveTo(0, 349.00000000000006);
-        assert.equal(path.toPathData({flipY: false}), expectedResult);
+        assert.equal(path.toPathData({decimalPlaces: 2}), expectedResult);
+
+        expectedResult = 'M0 349.01';
+        path = new Path();
+        path.moveTo(0, 349.0060000000000);
+        assert.equal(path.toPathData({decimalPlaces: 2}), expectedResult);
+
+        expectedResult = 'M0 349.06';
+        path = new Path();
+        path.moveTo(0, 349.060000000000);
+        assert.equal(path.toPathData({decimalPlaces: 2}), expectedResult);
+
+        expectedResult = 'M0 349.00000000000006';
+        path = new Path();
+        path.moveTo(0, 349.00000000000006);
+        assert.equal(path.toPathData({decimalPlaces: 14}), expectedResult);
+
     });
 
     afterEach(() => {
